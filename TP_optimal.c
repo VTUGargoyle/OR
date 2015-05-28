@@ -1,5 +1,11 @@
 /* Code to find optimal solution for Transportation Problem */
 
+/* 
+ * Note: The looping fails for some problems. 
+ * Need to check which part of the code is going kaput.
+ * Appears to run correctly for most problems I worked out, so, commiting anyway.
+ */
+
 #include <stdio.h>
 
 #define true 1
@@ -22,9 +28,11 @@ int cost[M][N] = {
 int sup[M] = { 10, 15, 40 };
 int dem[N] = { 20, 15, 30 };
 
-/* This matrix indicates whether any allocation is made in a cell 
+/* 
+ * This matrix indicates whether any allocation is made in a cell 
  * Allocation is marked with '.', which includes dummy allocation also
- * Other cells are marked with ' '                                     */
+ * Other cells are marked with ' '                                     
+ */
 int m[M][N];
 
 int alloc[M][N];                // The values of the allocations in each cell
@@ -111,8 +119,10 @@ int find_min_diff()
     return 0;
 }
 
-/* Traverse from the given point in the given direction.
- * When forming the edge, see that it doesnt go back in the direction it came from */
+/* 
+ * Traverse from the given point in the given direction.
+ * When forming the edge, see that it doesnt go back in the direction it came from 
+ */
 
 int traverse(int i, int j, int dir)
 {
