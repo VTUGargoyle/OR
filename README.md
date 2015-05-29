@@ -1,6 +1,7 @@
 # Operations Research
 
 All the python files are to be run on sagemath (http://www.sagemath.org/), which can be run on a linux or mac machine. 
+Otherwise, create an account in https://cloud.sagemath.com , create a new worksheet (new -> sage worksheet), and then run the code. 
 
 1. `bigm_modules.py`: Given the input in matrix form (after inserting all the artificial and slack/surplus variables), solves using Big-M method and displays the iterations in LaTeX which can be directly copied to the LaTeX files. 
 
