@@ -1,7 +1,10 @@
 # Operations Research
 
-All the python files are to be run on sagemath (http://www.sagemath.org/), which can be run on a linux or mac machine. 
+Note 1: All the python files are to be run on sagemath (http://www.sagemath.org/), which can be run on a linux or mac machine. 
 Otherwise, create an account in https://cloud.sagemath.com , create a new worksheet (new -> sage worksheet), and then run the code. 
+
+Note 2: Recently found out that sagemath actually contains some modules specifically to learn about simplex and graphical methods to solve LPP.
+This is highly recommended: http://doc.sagemath.org/html/en/reference/numerical/sage/numerical/interactive_simplex_method.html
 
 1. `bigm_modules.py`: Given the input in matrix form (after inserting all the artificial and slack/surplus variables), solves using Big-M method and displays the iterations in LaTeX which can be directly copied to the LaTeX files. 
 
