@@ -1,0 +1,45 @@
+\documentclass[11pt]{article}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs 24.4.1 (Org mode 8.2.10)}}
+\begin{document}
+
+\section*{}
+\label{sec-1}
+%~ \begin{frame}
+%~ \frametitle{Steps to solve Transportation Problem}
+{\Large  \bf Steps to solve Transportation Problem}\\
+
+\begin{enumerate}
+\item Find an initial BFS using any of the methods. Enter the allocated value at the center of the cells.
+\item For all the basic variables (cells having allocations), solve the equations $c_{ij}=u_i+v_j$, starting initially with some $u_i=0$ and entering successively the values $u_i$ and $v_j$
+\item Compute the cost differences $d_{ij}=c_{ij}-u_i-v_j$ for all the non-basic cells and enter them in the lower right corners of the cells 
+\item Apply the optimality test:
+\begin{enumerate}
+\item If all $d_{ij}\ge 0$, the current BFS is optimal
+\item If at least one $d_{ij}<0$, select the cell having the most negative $d_{ij}$ as the entering B.V.
+\end{enumerate}
+\item Write a $\fbox{+}$ to indicate the entering B.V. Form a loop starting from $\fbox{+}$, which connects only some basic cells. Write alternating + and - signs just above the allocations in the loop. Cells having `-' are called the donor cells and the cells having `+' sign are called recipient cells.
+\item From the - signs, choose the value of allocation which is the least, say $\theta$. Subtract $\theta$ from all the donor cells and add $\theta$ to all the recipient cells. The basic cell whose allocation has been made zero is called the leaving B.V. 
+     If multiple donor cells become zero, then choose any one cell as the leaving B.V and keep other allocations as 0.
+\item Return to step 2 and then repeat the process until an optimal solution is found.
+\end{enumerate}
+%~ \end{frame}
+% Emacs 24.4.1 (Org mode 8.2.10)
+\end{document}

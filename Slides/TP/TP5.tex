@@ -1,0 +1,76 @@
+\documentclass{beamer}
+
+\title{TP5}
+\author{gar}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}
+  \frametitle{Maximization in Transportation Problem}
+  \begin{itemize}
+  \item There are three factories A, B and C, which supply goods to four dealers $D_1$, $D_2$, $D_3$, and $D_4$. The production capacities of these factories are 1000, 700 and 900 units per month, respectively. The requirements from the dealers are 900, 800, 500 and 400 units per month, respectively. The per unit return are Rs 8, 7 and 9 at factories A, B and C, respectively. The following table gives the unit transportation costs from the factories to the dealers. 
+  \end{itemize}
+  \begin{center}
+  \begin{tabular}{|r|cccc|}
+\hline
+      & $D_1$ & $D_2$ & $D_3$ & $D_4$ \\
+\hline
+    A & 2  & 2  & 2  & 4  \\ 
+    B & 3  & 5  & 3  & 2  \\
+    C & 4  & 3  & 2  & 1 \\
+\hline
+  \end{tabular}
+\end{center}
+Determine the optimum solution to maximize the total returns.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Write the Profit Matrix}
+    \begin{center}
+  \begin{tabular}{|r|cccc|}
+\hline
+            & D1    & D2    & D3    & D4             \\
+\hline
+    A       & 8-2=6 & 8-2=6 & 8-2=6 & 8-4=4          \\ 
+    B       & 7-3=4 & 7-5=2 & 7-3=4 & 7-2=5          \\
+    C       & 9-4=5 & 9-3=6 & 9-2=7 & 9-1=8          \\
+\hline
+  \end{tabular}
+\end{center}
+Along with the capacities and requirements, the profit matrix is:
+    \begin{center}
+  \begin{tabular}{|r|cccc|l|}
+\hline
+            & D1    & D2    & D3    & D4  & Capacity \\
+\hline
+    A       & 6     & 6     & 6     & 4   & 1000     \\ 
+    B       & 4     & 2     & 4     & 5   & 700      \\
+    C       & 5     & 6     & 7     & 8   & 900      \\
+\hline
+Requirement & 900   & 800   & 500   & 400 & \\
+\hline
+  \end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Convert to Minimization Problem}
+  To convert it to a standard transportation problem, we need to write the loss matrix, which is obtained by subtracting all the elements from the highest element, 8.
+    \begin{center}
+  \begin{tabular}{|r|cccc|l|}
+\hline
+            & D1    & D2    & D3    & D4  & Capacity \\
+\hline
+    A       & 2     & 2     & 2     & 4   & 1000     \\ 
+    B       & 4     & 6     & 4     & 3   & 700      \\
+    C       & 3     & 2     & 1     & 0   & 900      \\
+\hline
+Requirement & 900   & 800   & 500   & 400 & \\
+\hline
+  \end{tabular}
+\end{center}
+\end{frame}
+\end{document}

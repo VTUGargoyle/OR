@@ -1,0 +1,43 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\providecommand{\alert}[1]{\textbf{#1}}
+
+\title{hungarian}
+\author{gar}
+\date{}
+
+\begin{document}
+
+\subsection*{Hungarian Algorithm}
+\label{sec-1-1}
+
+\begin{enumerate}
+\item Subtract the smallest number in each row from every number in the row. (This is called row reduction.) Enter the results in a new table
+\item Subtract the smallest number in each column of the new table from every number in the column. (This is called column reduction.) Enter the results in another table
+\item Test whether an optimal set of assignments can be made. You do this by determining the minimum number of lines needed to cover (i.e., cross out) all zeros. Go to 6 if the minimum number of lines is equal to the number of rows
+\item If the number of lines is less than the number of rows, modify the table in the following way:
+\begin{enumerate}
+\item Subtract the smallest uncovered number from every uncovered number in the table
+\item Add the smallest uncovered number to the numbers at intersections of covering lines
+\item Numbers crossed out but not at the intersections of cross-out lines carry over unchanged to the next table
+\end{enumerate}
+\item Repeat steps 3 and 4 until an optimal set of assignments is possible
+\item Make the assignments one at a time in positions that have zero elements
+\end{enumerate}
+
+\end{document}

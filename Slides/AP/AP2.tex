@@ -1,0 +1,185 @@
+\documentclass[12pt]{beamer}
+\usepackage{amsmath,tabu}
+\usepackage{tikz}
+\newcommand{\tm}[2]{\tikz[overlay,remember picture,baseline] \node [anchor=base] (#1) {#2};} %mark
+\newcommand{\dvl}[3][]{% draw vertical line
+  \begin{tikzpicture}[overlay,remember picture]
+    \draw[#1] (#2.north) -- (#3.south);
+  \end{tikzpicture}
+}
+\newcommand{\dhl}[3][]{% draw horizontal line
+  \begin{tikzpicture}[overlay,remember picture]
+    \draw[#1] (#2.east) -- (#3.west);
+  \end{tikzpicture}
+}
+\usepackage{color}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\providecommand{\alert}[1]{\textbf{#1}}
+\usepackage[absolute,overlay]{textpos}
+
+\title{AP2}
+\author{gar}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}
+\begin{itemize}
+\item Find an optimal assignment
+\end{itemize}
+\begin{center}
+\begin{tabular}{|c|ccccc|}
+\hline
+  & 1  & 2  & 3  & 4  & 5  \\
+\hline
+A & 10 & 5  & 13 & 15 & 16 \\
+B & 3  & 9  & 18 & 13 & 6  \\
+C & 10 & 7  & 2  & 2  & 2  \\
+D & 7  & 11 & 9  & 7  & 12 \\
+E & 7  & 9  & 10 & 4  & 12 \\
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Reduce the rows
+\end{itemize}
+\begin{center}
+\begin{tabular}{|c|ccccc|}
+\hline
+  & 1 & 2 & 3  & 4  & 5  \\
+\hline
+A & 5 & 0 & 8  & 10 & 11 \\
+B & 0 & 6 & 15 & 10 & 3  \\
+C & 8 & 5 & 0  & 0  & 0  \\
+D & 0 & 4 & 2  & 0  & 5  \\
+E & 3 & 5 & 6  & 0  & 8  \\
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Reduce the columns
+\end{itemize}
+\begin{center}
+\begin{tabular}{|c|ccccc|}
+\hline
+  & 1 & 2 & 3  & 4  & 5  \\
+\hline
+A & 5 & 0 & 8  & 10 & 11 \\
+B & 0 & 6 & 15 & 10 & 3  \\
+C & 8 & 5 & 0  & 0  & 0  \\
+D & 0 & 4 & 2  & 0  & 5  \\
+E & 3 & 5 & 6  & 0  & 8  \\
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Cover the zeros
+\end{itemize}
+\begin{center}
+\begin{tabular}{|c|ccccc|}
+\hline
+  & 1          & 2 & 3  & 4           & 5           \\
+\hline
+A & \tm{a1}{5} & 0 & 8  & \tm{a6}{10} & \tm{a2}{11} \\
+B & 0          & 6 & 15 & 10          & 3           \\
+C & \tm{a3}{8} & 5 & 0  & 0           & \tm{a4}{0}  \\
+D & 0          & 4 & 2  & 0           & 5           \\
+E & \tm{a5}{3} & 5 & 6  & \tm{a7}{0}  & 8           \\
+\hline
+\end{tabular}
+\dhl[red,thick]{a2}{a1}
+\dhl[red,thick]{a4}{a3}
+\dvl[red,thick]{a1}{a5}
+\dvl[red,thick]{a6}{a7}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Subtract minimum from all uncovered elements and add the minimum element to the intersections
+\end{itemize}
+\begin{center}
+\begin{tabular}{|c|ccccc|}
+\hline
+  & 1  & 2 & 3  & 4  & 5  \\
+\hline
+A & 7  & 0 & 8  & 12 & 11 \\
+B & 0  & 4 & 13 & 10 & 1  \\
+C & 10 & 5 & 0  & 2  & 0  \\
+D & 0  & 2 & 0  & 0  & 3  \\
+E & 3  & 3 & 4  & 0  & 6  \\
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Cover the zero elements
+\end{itemize}
+\begin{center}
+\begin{tabular}{|c|ccccc|}
+\hline
+  & 1           & 2 & 3          & 4           & 5           \\
+\hline
+A & \tm{a1}{7}  & 0 & \tm{a5}{8} & \tm{a7}{12} & \tm{a2}{11} \\
+B & 0           & 4 & 13         & 10          & 1           \\
+C & \tm{a3}{10} & 5 & 0          & 2           & \tm{a4}{0}  \\
+D & 0           & 2 & 0          & 0           & 3           \\
+E & \tm{a9}{3}  & 3 & \tm{a6}{4} & \tm{a8}{0}  & 6           \\
+\hline
+\end{tabular}
+\dvl[red,thick]{a1}{a9}
+\dvl[red,thick]{a5}{a6}
+\dvl[red,thick]{a7}{a8}
+\dhl[red,thick]{a2}{a1}
+\dhl[red,thick]{a4}{a3}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item The number of lines to cover the zeros is same as the number of rows
+\item Hence, an optimal assignment can be made by selecting the zero elements 
+\end{itemize}
+\begin{center}
+\begin{tabular}{|c|ccccc|}
+\hline
+  & 1        & 2        & 3        & 4        & 5        \\
+\hline
+A & 7        & \fbox{0} & 8        & 12       & 11       \\
+B & \fbox{0} & 4        & 13       & 10       & 1        \\
+C & 10       & 5        & 0        & 2        & \fbox{0} \\
+D & 0        & 2        & \fbox{0} & 0        & 3        \\
+E & 3        & 3        & 4        & \fbox{0} & 6        \\
+\hline
+\end{tabular}
+\end{center}
+which means Employee 2 does Job A, 1 is assigned B, 5 does C, 3 does D and 4 does E.
+
+It has a total cost of $5+3+2+9+4=23$
+\end{frame}
+\end{document}

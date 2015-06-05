@@ -1,0 +1,202 @@
+\documentclass[12pt]{beamer}
+\usepackage{amsmath,tabu}
+\usepackage{tikz}
+
+\newcommand{\tm}[2]{\tikz[overlay,remember picture,baseline] \node [anchor=base] (#1) {#2};} 
+\newcommand{\dvl}[3][]{% draw vertical line
+  \begin{tikzpicture}[overlay,remember picture]
+    \draw[#1] (#2.north) -- (#3.south);
+  \end{tikzpicture}
+}
+\newcommand{\dhl}[3][]{% draw horizontal line
+  \begin{tikzpicture}[overlay,remember picture]
+    \draw[#1] (#2.east) -- (#3.west);
+  \end{tikzpicture}
+}
+\usepackage{color}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\providecommand{\alert}[1]{\textbf{#1}}
+\usepackage[absolute,overlay]{textpos}
+
+\title{AP4}
+\author{gar}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}
+\begin{itemize}
+\item Four mechanics are to be assigned four of the five available jobs such that the profit is maximized. 
+The expected profit is given below. Find out which job must be declined.
+\end{itemize}
+\begin{center}
+\begin{tabular}{|c|ccccc|}
+\hline
+  & 1  & 2  & 3   & 4   & 5  \\
+\hline
+A & 62 & 78 & 50  & 111 & 82 \\
+B & 71 & 84 & 61  & 73  & 59 \\
+C & 87 & 92 & 111 & 71  & 81 \\
+D & 48 & 64 & 87  & 77  & 80 \\
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Add a dummy mechanic
+\end{itemize}
+\begin{center}
+\begin{tabular}{|c|ccccc|}
+\hline
+  & 1  & 2  & 3   & 4   & 5  \\
+\hline
+A & 62 & 78 & 50  & 111 & 82 \\
+B & 71 & 84 & 61  & 73  & 59 \\
+C & 87 & 92 & 111 & 71  & 81 \\
+D & 48 & 64 & 87  & 77  & 80 \\
+E & 0  & 0  & 0   & 0   & 0  \\
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Convert it to a loss matrix, by subtracting each element from the maximum element in the matrix
+\item Then, it gets reduced to the usual assignment problem
+\end{itemize}
+\begin{center}
+\begin{tabular}{|c|ccccc|}
+\hline
+  & 1   & 2   & 3   & 4   & 5   \\
+\hline
+A & 49  & 33  & 61  & 0   & 29  \\
+B & 40  & 27  & 50  & 38  & 52  \\
+C & 24  & 19  & 0   & 40  & 30  \\
+D & 63  & 47  & 24  & 34  & 31  \\
+E & 111 & 111 & 111 & 111 & 111 \\
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Subtract the minimum of the row from that row
+\end{itemize}
+\begin{center}
+\begin{tabular}{|c|ccccc|}
+\hline
+  & 1  & 2  & 3  & 4  & 5  \\
+\hline
+A & 49 & 33 & 61 & 0  & 29 \\
+B & 13 & 0  & 23 & 11 & 25 \\
+C & 24 & 19 & 0  & 40 & 30 \\
+D & 39 & 23 & 0  & 10 & 7  \\
+E & 0  & 0  & 0  & 0  & 0  \\
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Draw minimum number of lines to cover all zeros
+\end{itemize}
+\begin{center}
+\begin{tabular}{|c|ccccc|}
+\hline
+  & 1           & 2           & 3           & 4  & 5           \\
+\hline
+A & \tm{a1}{49} & \tm{a5}{33} & \tm{a7}{61} & 0  & \tm{a2}{29} \\
+B & 13          & 0           & 23          & 11 & 25          \\
+C & 24          & 19          & 0           & 40 & 30          \\
+D & 39          & 23          & 0           & 10 & 7           \\
+E & \tm{a3}{0}  & \tm{a6}{0}  & \tm{a8}{0}  & 0  & \tm{a4}{0}  \\
+\hline
+\end{tabular}
+\dhl[thick,red]{a2}{a1}
+\dhl[thick,red]{a4}{a3}
+\dvl[thick,red]{a5}{a6}
+\dvl[thick,red]{a7}{a8}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Subtract the minimum from the uncovered elements
+\end{itemize}
+\begin{center}
+\begin{tabular}{|c|ccccc|}
+\hline
+  & 1    & 2    & 3  & 4   & 5    \\
+\hline
+A & 49   & {40} & 68 & {0} & 29   \\
+B & 6    & 0    & 23 & 5   & 18   \\
+C & {17} & 19   & 0  & 33  & {23} \\
+D & {32} & 23   & 0  & 3   & {0}  \\
+E & 0    & {7}  & 7  & {0} & 0    \\
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Draw minimum lines to cover zeros
+\end{itemize}
+\begin{center}
+\begin{tabular}{|c|ccccc|}
+\hline
+  & 1           & 2           & 3  & 4          & 5           \\
+\hline
+A & 49          & \tm{a1}{40} & 68 & \tm{a3}{0} & 29          \\
+B & 6           & 0           & 23 & 5          & 18          \\
+C & \tm{a5}{17} & 19          & 0  & 33         & \tm{a6}{23} \\
+D & \tm{a7}{32} & 23          & 0  & 3          & \tm{a8}{0}  \\
+E & \tm{a9}{0}  & \tm{a2}{7}  & 7  & \tm{a4}{0} & \tm{a0}{0}  \\
+\hline
+\end{tabular}
+\dhl[thick,red]{a6}{a5}
+\dhl[thick,red]{a8}{a7}
+\dhl[thick,red]{a0}{a9}
+\dvl[thick,red]{a1}{a2}
+\dvl[thick,red]{a3}{a4}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Make the assignments
+\end{itemize}
+\begin{center}
+\begin{tabular}{|c|ccccc|}
+\hline
+  & 1        & 2        & 3        & 4        & 5        \\
+\hline
+A & 49       & {40}     & 68       & \fbox{0} & 29       \\
+B & 6        & \fbox{0} & 23       & 5        & 18       \\
+C & {17}     & 19       & \fbox{0} & 33       & {23}     \\
+D & {32}     & 23       & 0        & 3        & \fbox{0} \\
+E & \fbox{0} & {7}      & 7        & {0}      & 0        \\
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+\end{document}
